@@ -49,36 +49,29 @@
     <!-- Slideshow galleries -->
     
     <!-- Pure Basic -->
-     <div class="scroll-container-PB">
-        <div class ="pbSlide1">
-            <img src="/images/photos/PURE BASIC/firstimage.png" alt="Pure Basic Table Products" style="width:100%">
-            <img src="/images/photos/PURE BASIC/secondimage.png" alt="Pure Basic Clothing Rack" style="width:100%">
-            <img src="/images/photos/PURE BASIC/thirdimage.png" alt="Pure Basic Clothing Rack 2" style="width:100%">
+    <div class="temp-img-container">
+         <div class="scroll-container-PB">
+            <img src="/images/photos/PURE BASIC/firstimage.png" alt="Pure Basic Table" style="width:100%">
+            <img src="/images/photos/PURE BASIC/secondimage.png" alt="Pure Basic Rack" style="width:100%">>
+            <img src="/images/photos/PURE BASIC/thirdimage.png" alt="Pure Basic Rack 2" style="width:100%">>
         </div>
-    </div>
-    
 
-        <!-- Uniq -->
-     <div class="scroll-container-UNIQ">
-
+            <!-- Uniq -->
+         <div class="scroll-container-UNIQ">
             <img src="/images/photos/UNIQ/firstimage.png" alt="UNIQ entrance" style="width:100%">
             <img src="/images/photos/UNIQ/secondimage.png" alt="UNIQ Clothing Rack" style="width:100%">>
             <img src="/images/photos/UNIQ/thirdimage.png" alt="UNIQ Decor" style="width:100%">>
-    </div>
+        </div>
 
-        <!-- DTB -->
-     <div class="scroll-container-DTB">
-        <img src="/images/photos/DTB/firstimage.png" alt="DTB entrance" style="width:100%">>
-        <img src="/images/photos/DTB/secondimage.png" alt="DTB Clothing Rack" style="width:100%">>
-        <img src="/images/photos/DTB/thirdimage.png" alt="DTB Decor" style="width:100%">>
+            <!-- DTB -->
+         <div class="scroll-container-DTB">
+            <img src="/images/photos/DTB/firstimage.png" alt="DTB entrance" style="width:100%">>
+            <img src="/images/photos/DTB/secondimage.png" alt="DTB Clothing Rack" style="width:100%">>
+            <img src="/images/photos/DTB/thirdimage.png" alt="DTB Decor" style="width:100%">>
+        </div>
     </div>
 
 <!-- Bottom Paragraphs -->
-
-   <!-- BOX BACKGROUNDS-->
-   <div style="width: 100%; height: 574px; left: 0px; top: 556px; position: absolute; background: #A5D298; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"></div>
-   <div style="width: 100%; height: 546px; left: 0px; top: 584px; position: absolute; background: #70A651; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"></div>
-
     <!-- Title -->
 <section class = "mission-statements">
     <div class = "mission-header">
@@ -115,6 +108,37 @@
                 <br/>By prioritizing longevity, designers help reduce waste, encourage mindful consumption, and create pieces that become cherished staples rather than disposable items. It’s a return to clothing made with care, meant to be loved for years, not weeks.</div>
             </p>
         </div>
+
+   <!-- BOX BACKGROUNDS-->
+    <div class="box-bg box1" aria-hidden="true"></div>
+    <div class="box-bg box2" aria-hidden="true"></div
 </section>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length === 0) {
+      console.warn('No slides found');
+    } else {
+      let currentIndex = 0;
+      const delay = 2000; // 2000ms = 2 seconds
+
+      function showNextSlide() {
+        slides[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add('active');
+      }
+
+      let timer = setInterval(showNextSlide, delay);
+
+      // Pause when page is hidden, resume when visible
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          clearInterval(timer);
+        } else {
+          timer = setInterval(showNextSlide, delay);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
