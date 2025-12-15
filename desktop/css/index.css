@@ -61,6 +61,7 @@ html, body {
   padding-top: 50px;
   padding-bottom: 50px;
   margin-right: 0;
+  color: white;
 }
 
 /* make the leaf/main logo icon smaller and keep aspect ratio */
@@ -110,7 +111,7 @@ html, body {
   gap: 30px;               /* spacing between columns (use gap not margins) */
   align-items: flex-start;
   margin: 25px;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
   margin-top: 50px;
 }
 
@@ -233,9 +234,9 @@ p {
     z-index: 1;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
+    width: 95%;
     margin: 0 auto; /* center the paragraphs */
-    gap: 50px; /* space between paragraphs */
+    gap: 20px; /* space between paragraphs */
     box-sizing: border-box;
 }
 
@@ -262,6 +263,7 @@ p {
   font-size: 2rem; /* ~32px */
   line-height: 1.1;
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
   /* ensure h3 in mission paragraphs use Forum */
   font-family: 'Forum', serif;
   text-shadow: 0 2px 6px rgba(0,0,0,0.35);
@@ -284,7 +286,7 @@ p {
 
 /* adding padding to move "OUR MISSION" down a smidgen */
 .mission-header {
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 /* Center the content inside each mission paragraph column */
