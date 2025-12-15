@@ -1,21 +1,52 @@
 
+/* ensure page has no default gaps */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
 
+/* Frost control variables: tweak these to change intensity quickly */
+:root {
+  --frost-opacity: 0.22;    /* translucent white overlay to mute blue background */
+  --frost-blur: 6px;        /* default backdrop blur */
+  --frost-blur-hover: 2px;  /* reduced blur on hover */
+}
 /* Header Section */
 .header {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 999; /* keeps the header where it belongs.... at the head */
   background-color: #70A651; /* make it GREEN */
-  overflow: hidden;
+  overflow: visible;
   display: flex;
+  align-items: center;
+  justify-content: space-between; /* main logo left, nav right */
 
   /* Sizing stuff */
+  box-sizing: border-box; /* include padding and border in element's total width and height */
    width: 100%;
    height: 90px; /* we don't like fat headers in this household */
    padding-top: 10px; /* defines padding at the top of the header */
    padding-bottom: 10; /* defines padding at the bottom of the header */
+   padding-right: 0px; /* no padding on the right side of the header */ 
+   padding-left: 0px; /* no padding on the left side of the header */
    margin-bottom: 0; /* no margin at the bottom of the header */
+}
+
+/* Thin stripe directly under the header (full-bleed, 15px tall) */
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%; /* place immediately after the header */
+  height: 15px;
+  background: #A5D298; /* contrasting green stripe; change if you prefer another color */
+  pointer-events: none;
+  z-index: 998; /* sit just under the header (header has z-index:999) */
 }
 
 /* Main Logo  */
@@ -32,22 +63,154 @@
   margin-right: 0;
 }
 
+/* make the leaf/main logo icon smaller and keep aspect ratio */
+.mainlogo-icon {
+  height: 65px;
+  width: auto;
+  display: block;
+}
+
 /* Navigation Bar */
-.header-nav {
+
+.header-nav .nav-list {
   display: flex;
-  justify-content: space-evenly; /* Evenly distribute the nav links */
-  align-items: center; /* Center vertically */
-  width: 100%; /* Take up full width */
-  padding: 0 20px; /* Padding for spacing between items */
+  align-items: center;
+  gap: 4rem; /* spacing between logos/links */
+  margin: 0;
+  padding: 0px 40px;
+  list-style: none;
+}
+
+/* aligns nav link items vertically, makes the "about" link not blue and not underlined. we stan flexbox */
+.header-nav .nav-list .nav-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* size the nav images */
+.header-nav .nav-list img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* adjusts the last nav link, since it is the only text link */
+.header-nav .nav-list .nav-link:last-child {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Temporary Image Container for Store Photos */
+
+.temp-img-container {
+  display: flex;
+  justify-content: center; /* center the group of columns */
+  gap: 30px;               /* spacing between columns (use gap not margins) */
+  align-items: flex-start;
+  margin: 25px;
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+
+/* Each direct child column: use flex so images inside can be centered */
+.temp-img-container > div {
+  flex: 0 1 30%; /* allow columns to shrink on small screens */
+  display: flex;
+  justify-content: center; /* center image horizontally inside column */
+  align-items: center;     /* center vertically if column has height */
+  padding: 0;
+  box-sizing: border-box;
+  overflow: visible; /* allow outlines/shadows to show outside the image */
+  position: relative; /* for absolutely positioned decorative dots */
+}
+
+.temp-img-container img,
+.gallery-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0; /* remove image margins so centering works */
+}
+
+.gallery-image {
+  border-radius: 0% 60% 0% 60%;
+  outline: 17px solid #A5D298; /* fixed pixel size so it doesn't scale with viewport units */
+  outline-offset: -8px;
+}
+
+/* three small green dots centered under each image
+"but neyu you could just make the dots in photoshop and shove them into the html" i did way too much googling on this to not use it */
+.temp-img-container > div::after {
+  /* three circular dots centered under each image */
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -28px; /* place the dots 22px below the image/container */
+  width: 13px;
+  height: 13px;
+  background: #A5D298;
+  border-radius: 50%;
+  box-shadow: -22px 0 0 #A5D298, 22px 0 0 #A5D298; /* create the left and right dots */ 
+  pointer-events: none;
+}
+
+/* frosted glass effect like in figma: uses backdrop-filter to blur the image beneath a translucent layer.
+    Uses CSS variables for fast tuning and includes a simplified fallback that blurs the image when
+   backdrop-filter is unsupported.
+
+   NOTE: AI WAS USED FOR THIS. I really wanted the frosted effect and it was hard to get right, but copilot helped a lot.*/
+.temp-img-container > div::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0; */
+  /* match the image's organic rounded shape used by .gallery-image */
+  border-radius: 0% 60% 0% 60%;
+  background: rgba(255,255,255,var(--frost-opacity));
+  -webkit-backdrop-filter: blur(var(--frost-blur)); 
+  backdrop-filter: blur(var(--frost-blur));
+  pointer-events: none; /* allow clicks to pass through to the image/link */
+  z-index: 2; /* sit above the image so the blur shows */
+  transition: backdrop-filter 180ms ease, background-color 180ms ease; /* smooth transition on hover SO COOL*/
+}
+
+/* ensure the image sits behind the overlay and can accept z-index */
+.temp-img-container > div img {
+  position: relative;
+  z-index: 1;
+}
+
+/* soften the frosted effect on hover */
+.temp-img-container > div:hover::before {
+  -webkit-backdrop-filter: blur(var(--frost-blur-hover));
+  backdrop-filter: blur(var(--frost-blur-hover));
+  background: rgba(255,255,255,calc(var(--frost-opacity) * 0.6));
 }
 
 
 
-.temp-img-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.mission-paragraphs {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0px;
+  width: 100%;
+}
+
+.mission-paragraphs > div {
+  color: white;
+  width: 30%;
+  padding: 15px;
+  text-align: center;
+  border-top-left-radius: 34px;
+  border-bottom-right-radius: 34px;
+  background-color:rgba(49, 108, 26, 0.58);
+  margin-bottom: 200px;
+}
+
+div.clean-resources, div.designer {
+  margin-bottom: 0px;
 }
 
 h3 {
@@ -59,7 +222,7 @@ h3 {
 
 p {
     font-family: "Inter";
-    font-size: 18px;
+    font-size: 12px;
     font-style: italic;
     text-align: center;
 }
@@ -73,6 +236,70 @@ p {
     width: 90%;
     margin: 0 auto; /* center the paragraphs */
     gap: 50px; /* space between paragraphs */
+    box-sizing: border-box;
+}
+
+/* Ensure the mission section uses the same green background so text appears inside it */
+.mission-statements {
+  position: relative;
+  background: #70A651; /* matches the lower box color */
+  overflow: visible;
+  top: 2;
+  color: #ffffff; /* default text color inside the section */
+  text-align: center; /* center the section heading and make inner text centered by default */
+}
+
+.mission-paragraphs p {
+  color: #ffffff; /* ensure readable text on green background */
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-style: italic;
+  /* paragraphs should not have a drop shadow */
+  text-shadow: none;
+}
+
+/* specific sizes for headings and paragraphs inside the mission area */
+.mission-paragraphs h3 {
+  font-size: 2rem; /* ~32px */
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  /* ensure h3 in mission paragraphs use Forum */
+  font-family: 'Forum', serif;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+.mission-paragraphs p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* style the section title */
+.mission-header h2 {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: 2.4rem; /* larger section title */
+  font-style: italic;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  margin: 0px 0 20px 0; /* add top spacing to move the title down */
+}
+
+/* adding padding to move "OUR MISSION" down a smidgen */
+.mission-header {
+  padding-top: 30px;
+}
+
+/* Center the content inside each mission paragraph column */
+.mission-paragraphs > div {
+  text-align: center;
+}
+
+/* Remove drop shadow for paragraph text and for the specific mission item titles */
+.mission-paragraphs p {
+  text-shadow: none;
+}
+.mission-paragraphs .clean-resources h3,
+.mission-paragraphs .second-chances h3, 
+.mission-paragraphs .designer h3 {
+  text-shadow: none;
 }
 
 /* Background color */
@@ -96,50 +323,9 @@ body {
 
 /* First (upper) box */
 .box-bg.box1 {
-  top: 556px;
-  height: 100%;
+  /* position this box 30px above the top of the section that contains it */
+  top: -15px;
+  /* increase height so it still covers the section from the new top */
+  height: calc(100% + 30px);
   background: #A5D298;
 }
-
-/* Second (lower) box */
-.box-bg.box2 {
-  top: 584px;
-  height: 546px;
-  background: #70A651;
-}
-
-/*body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f4f4f4;
-      margin: 0;
-    }
-
-    .slideshow-container {
-      width: 400px;
-      height: 250px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
