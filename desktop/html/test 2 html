@@ -49,13 +49,17 @@
     <!-- Slideshow galleries -->
     
     <!-- Pure Basic -->
-     <div class="scroll-container-PB">
-        <div class ="pbSlide1">
-            <img src="/images/photos/PURE BASIC/firstimage.png" alt="Pure Basic Table Products" style="width:100%">
-            <img src="/images/photos/PURE BASIC/secondimage.png" alt="Pure Basic Clothing Rack" style="width:100%">
-            <img src="/images/photos/PURE BASIC/thirdimage.png" alt="Pure Basic Clothing Rack 2" style="width:100%">
+        <div class="slideshow-container">
+            <div class="slide active">
+                <img src="/images/photos/PURE BASIC/firstimage.png" alt="Slide 1">
+            </div>
+            <div class="slide">
+              <img src="/images/photos/PURE BASIC/secondimage.png" alt="Slide 2">
+            </div>
+            <div class="slide">
+              <img src="/images/photos/PURE BASIC/thirdimage.png" alt="Slide 3">
+            </div>
         </div>
-    </div>
     
 
         <!-- Uniq -->
@@ -116,5 +120,18 @@
             </p>
         </div>
 </section>
+ <script>
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+    const delay = 2000; // 2000ms = 2 seconds
+
+    function showNextSlide() {
+      slides[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add('active');
+    }
+
+    setInterval(showNextSlide, delay);
+  </script>
 </body>
 </html>

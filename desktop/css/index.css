@@ -1,0 +1,105 @@
+
+
+/* Header Section */
+.header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999; /* keeps the header where it belongs.... at the head */
+  background-color: #70A651; /* make it GREEN */
+  overflow: hidden;
+  display: flex;
+
+  /* Sizing stuff */
+   width: 100%;
+   height: 128px; /* we don't like fat headers in this household */
+   padding-top: 20px; /* defines padding at the top of the header */
+   padding-bottom: 0; /* defines padding at the bottom of the header */
+   margin-bottom: 0; /* no margin at the bottom of the header */
+}
+
+/* Main Logo  */
+.header-mainlogo {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  flex-direction: row;
+  font-style: italic;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* Navigation Bar */
+.header-nav {
+  display: flex;
+  justify-content: space-evenly; /* Evenly distribute the nav links */
+  align-items: center; /* Center vertically */
+  width: 100%; /* Take up full width */
+  padding: 0 20px; /* Padding for spacing between items */
+}
+
+/* Background color */
+body {
+  background-color: #E2FAFB;
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  font-family: "Forum";
+  font-size: 40px;
+  font-weight: normal;
+  text-align: center;
+}
+
+p {
+    font-family: "Inter";
+    font-size: 18px;
+    font-style: italic;
+    text-align: center;
+}
+
+.mission-paragraphs {
+    display: flex; /* yuppee flexbox */
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto; /* center the paragraphs */
+    gap: 50px; /* space between paragraphs */
+}
+
+body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f4;
+      margin: 0;
+    }
+
+    .slideshow-container {
+      width: 400px;
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
