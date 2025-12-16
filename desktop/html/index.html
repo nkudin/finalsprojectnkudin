@@ -10,9 +10,6 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Forum&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-        <!-- JavaScript file link -->
-         <scripttype="text/javascript" src="/JS/slideshow.js"></script>
 </head>
 
 <body>
@@ -21,71 +18,74 @@
 
         <!-- Main Logo -->
         <div class="header-mainlogo">
-            <img src ="/images/iconleaf.png" alt:"life logo" class="mainlogo-icon">
-            <h1 class="mainlogo-text">
-                .life
-            </h1>
-
+            <a href="index.html" class="header-home-link">
+                <img src="/images/iconleaf.png" alt="life logo" class="mainlogo-icon">
+                <h1 class="mainlogo-text">
+                    .life
+                </h1>
+            </a>
         </div>
 
         <!-- Navigation Menu -->
         <nav class="header-nav">
             <ul class="nav-list">
                 <!-- Pure Basic Logo -->
-                <li class="nav-item"><a href="#" class="nav-link"><img src="/images/logopb.png"></a></li>
+                <li class="nav-item"><a href="purebasic.html" class="nav-link"><img src="/images/logopb.png"></a></li>
 
                 <!-- Uniq Logo -->
-                <li class="nav-item"><a href="#" class="nav-link"><img src="/images/logouniq.png"></a></li>
+                <li class="nav-item"><a href="uniq.html" class="nav-link"><img src="/images/logouniq.png"></a></li>
 
                 <!-- DTB Logo -->
-                <li class="nav-item"><a href="#" class="nav-link"><img src="/images/logodtb.png"></a></li>
+                <li class="nav-item"><a href="dtb.html" class="nav-link"><img src="/images/logodtb.png"></a></li>
 
                 <!-- About page -->
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">About</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Slideshow galleries -->
+    <!-- Image Containers -->
     
     <!-- Pure Basic -->
     <div class="temp-img-container">
-         <div class="img-container-PB">
-            <img src="/images/photos/PURE BASIC/firstimage.png" alt="Pure Basic Table" style="width:100%" class="gallery-image">
-           <!-- These are commented out temporarily.  Fix slideshow JS first.--
-            <img src="/images/photos/PURE BASIC/secondimage.png" alt="Pure Basic Rack" style="width:100%">>
-            <img src="/images/photos/PURE BASIC/thirdimage.png" alt="Pure Basic Rack 2" style="width:100%">>
-            -->
+            <div class="img-container-PB">
+                <img src="/images/photos/PURE BASIC/firstimage.png" alt="Pure Basic Table" class="gallery-image">
+            <div class="img-label">PURE BASIC</div>
         </div>
 
             <!-- Uniq -->
-         <div class="img-container-UNIQ">
-            <img src="/images/photos/UNIQ/firstimage.png" alt="UNIQ entrance" style="width:100%" class="gallery-image">
-            <!-- These are commented out temporarily.  Fix slideshow JS first.--
-            <img src="/images/photos/UNIQ/secondimage.png" alt="UNIQ Clothing Rack" style="width:100%">>
-            <img src="/images/photos/UNIQ/thirdimage.png" alt="UNIQ Decor" style="width:100%">> 
-            -->
+            <div class="img-container-UNIQ">
+                <img src="/images/photos/UNIQ/firstimage.png" alt="UNIQ entrance" class="gallery-image">
+            <div class="img-label">UNIQ</div>
         </div>
 
             <!-- DTB -->
-         <div class="img-container-DTB">
-            <img src="/images/photos/DTB/firstimage.png" alt="DTB entrance" style="width:100%" class="gallery-image">
-            <!-- These are commented out temporarily.  Fix slideshow JS first.--
-            <img src="/images/photos/DTB/secondimage.png" alt="DTB Clothing Rack" style="width:100%">>
-            <img src="/images/photos/DTB/thirdimage.png" alt="DTB Decor" style="width:100%">>
-            -->
+            <div class="img-container-DTB">
+                <img src="/images/photos/DTB/firstimage.png" alt="DTB entrance" class="gallery-image">
+            <div class="img-label">DRESS THE BIRD</div>
         </div>
     </div>
 
 <!-- Bottom Paragraphs -->
+
     <!-- Title -->
 <section class = "mission-statements">
     <div class = "mission-header">
         <h2>OUR MISSION</h2>
     </div>
 
-    <!-- Mission Statements -->
-     <div class = "mission-paragraphs">
+         <!-- Mission Statements -->
+            <!-- Leaf moment -->
+            <div class="leafdecor">
+                <img class="decor-leaf" src="/images/decorleaf.png" alt="decorative leaf image">
+                <!-- 
+                Mirrored copy 
+                    COMMENTED OUT BECAUSE IT WON'T WORK I'VE BEEN TRYING FOR 8 HOURS but hey at least this is proof i tried
+                -->
+                <!-- <img class="decor-leaf decor-leaf--mirror" src="/images/decorleafmirrored.png" alt="decorative leaf mirrored">-->
+            </div>
+
+             <div class = "mission-paragraphs">
         <div class="clean-resources">
             <h3>CLEAN RESOURCES</h3>
             <p>
@@ -109,40 +109,15 @@
             <p>
                 Designing clothes to last is at the heart of slow fashion. Slow fashion is a movement that values quality, intention, and longevity over quick trends. <br/>
                 <br/>Instead of chasing seasonal trends, slow fashion focuses on thoughtful craftsmanship, durable materials, and timeless silhouettes that can be worn season after season. <br/>
-                <br/>By prioritizing longevity, designers help reduce waste, encourage mindful consumption, and create pieces that become cherished staples rather than disposable items. It’s a return to clothing made with care, meant to be loved for years, not weeks.</div>
+                <br/>By prioritizing longevity, designers help reduce waste, encourage mindful consumption, and create pieces that become cherished staples rather than disposable items. It’s a return to clothing made with care, meant to be loved for years, not weeks.
             </p>
         </div>
 
    <!-- BOX BACKGROUNDS-->
-    <div class="box-bg box1" aria-hidden="true"></div>
-    <div class="box-bg box2" aria-hidden="true"></div
 </section>
-
-<script>
-    const slides = document.querySelectorAll('.slide');
-    if (slides.length === 0) {
-      console.warn('No slides found');
-    } else {
-      let currentIndex = 0;
-      const delay = 2000; // 2000ms = 2 seconds
-
-      function showNextSlide() {
-        slides[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % slides.length;
-        slides[currentIndex].classList.add('active');
-      }
-
-      let timer = setInterval(showNextSlide, delay);
-
-      // Pause when page is hidden, resume when visible
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          clearInterval(timer);
-        } else {
-          timer = setInterval(showNextSlide, delay);
-        }
-      });
-    }
-  </script>
+    <div class="box-bg box1" aria-hidden="true"></div>
+    <div class="box-bg box2" aria-hidden="true"></div>
+</section>
+</section>
 </body>
 </html>
